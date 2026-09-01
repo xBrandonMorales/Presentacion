@@ -251,7 +251,7 @@
             <div class="row">
                 <div class="col-lg-8 mx-auto mb-5">
                     <div class="form-modern">
-                        <form action="https://formsubmit.co/brandon.mora1165@gmail.com" method="POST">
+                        <form id="contactForm" action="https://formsubmit.co/ajax/brandon.mora1165@gmail.com" method="POST">
                             <input type="hidden" name="_subject" value="Nuevo mensaje desde tu portafolio">
                             <input type="hidden" name="_template" value="table">
                             <input type="hidden" name="_captcha" value="false">
@@ -293,9 +293,49 @@
                                 <button type="submit" class="btn btn-primary-custom btn-custom btn-lg px-5">
                                     <i class="fas fa-paper-plane mr-2"></i>Enviar Propuesta
                                 </button>
+                                <p id="formStatus" class="mt-3 mb-0" style="display:none; font-weight:600;"></p>
                             </div>
                         </form>
                     </div>
+                    <script>
+                        document.getElementById('contactForm').addEventListener('submit', function (e) {
+                            e.preventDefault();
+                            const form = e.target;
+                            const status = document.getElementById('formStatus');
+                            const btn = form.querySelector('button[type="submit"]');
+                            const originalBtn = btn.innerHTML;
+
+                            btn.disabled = true;
+                            btn.innerHTML = '<i class="fas fa-spinner fa-spin mr-2"></i>Enviando...';
+                            status.style.display = 'block';
+                            status.style.color = '#666';
+                            status.textContent = 'Enviando tu mensaje...';
+
+                            fetch(form.action, {
+                                method: 'POST',
+                                headers: { 'Accept': 'application/json' },
+                                body: new FormData(form)
+                            })
+                            .then(res => {
+                                if (res.ok) {
+                                    status.style.color = '#2e7d32';
+                                    status.textContent = '¡Mensaje enviado con éxito! Te responderé pronto.';
+                                    form.reset();
+                                } else {
+                                    status.style.color = '#c62828';
+                                    status.textContent = 'No se pudo enviar tu mensaje. Intenta de nuevo en un momento.';
+                                }
+                            })
+                            .catch(() => {
+                                status.style.color = '#c62828';
+                                status.textContent = 'Hubo un problema de conexión. Revisa tu internet e intenta de nuevo.';
+                            })
+                            .finally(() => {
+                                btn.disabled = false;
+                                btn.innerHTML = originalBtn;
+                            });
+                        });
+                    </script>
                 </div>
             </div>
 
