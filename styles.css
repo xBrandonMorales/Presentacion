@@ -382,9 +382,9 @@ body {
 .carousel-item{
     --accent: #E8963D;
 }
-.carousel-item.accent-fut{ --accent: #ab24ad; }
-.carousel-item.accent-pastillero{ --accent: #43ce7b; }
-.carousel-item.accent-agua{ --accent: #741414; }
+.carousel-item.accent-fut{ --accent: #3FA66B; }
+.carousel-item.accent-pastillero{ --accent: #4C8FE0; }
+.carousel-item.accent-agua{ --accent: #2CB4C4; }
 
 .carousel-item img {
     height: 500px;
@@ -611,4 +611,62 @@ textarea.form-control-modern {
     .hero-title { font-size: 2.5rem; }
     .hero-subtitle { font-size: 1.2rem; }
     .section-title { font-size: 2rem; }
+}
+
+/* ================= Ajustes responsive adicionales (no tocan el look de escritorio) ================= */
+
+/* Tablets */
+@media (max-width: 991px) {
+    .profile-card { max-width: 100%; }
+    .carousel-item img { height: 400px; }
+}
+
+/* Móviles grandes / tablets pequeñas */
+@media (max-width: 768px) {
+    .carousel-item img { height: 320px; }
+    .carousel-caption-modern {
+        padding: 1.25rem;
+        left: 15px;
+        right: 15px;
+        bottom: 15px;
+    }
+    .carousel-caption-modern h3 { font-size: 1.1rem; }
+    .carousel-caption-modern p { font-size: 0.85rem; }
+    .project-badge { padding: 5px 14px; font-size: 0.78rem; }
+
+    /* En touch no hay hover, así que las flechas del carrusel quedan visibles */
+    .carousel-modern .carousel-control-prev,
+    .carousel-modern .carousel-control-next {
+        opacity: 0.75;
+    }
+
+    .form-modern { padding: 1.75rem 1.25rem; }
+    .contact-info-card { padding: 1.5rem; }
+
+    .hero-content .btn-custom {
+        display: block;
+        width: 100%;
+        margin: 0 0 12px 0 !important;
+    }
+}
+
+/* Móviles pequeños */
+@media (max-width: 480px) {
+    .hero-title { font-size: 2rem; }
+    .section-title { font-size: 1.6rem; }
+
+    .carousel-item img { height: 240px; }
+    .carousel-caption-modern { padding: 1rem; }
+    .carousel-caption-modern h3 { font-size: 1rem; }
+    .carousel-caption-modern p { font-size: 0.8rem; margin-bottom: 0.75rem !important; }
+    .project-badge { padding: 4px 12px; font-size: 0.72rem; margin: 3px 3px 0 0; }
+
+    .contact-info-map .map-preview {
+        width: 85vw;
+        max-width: 260px;
+    }
+
+    .role-tag { font-size: 0.68rem; }
+    .photo-caption h1 { font-size: 1.5rem; }
+    .profile-body { padding: 28px 20px; }
 }
