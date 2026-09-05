@@ -177,7 +177,7 @@
 <section id="proyectos" class="py-5">
     <div class="container">
         <div class="text-center mb-5 fade-in-up">
-            <h2 class="section-title text-dark">Proyectos Destacados</h2>
+            <h2 class="section-title text-dark">Proyectos</h2>
             <p class="section-subtitle">Algunos de mis trabajos</p>
         </div>
 
@@ -362,17 +362,20 @@
                     </div>
                 </div>
                 <div class="col-md-4 mb-4">
-                    <div class="contact-info-card">
-                        <i class="fas fa-phone fa-2x mb-3" style="color: #f093fb;"></i>
-                        <h5>Teléfono</h5>
-                        <p class="text-muted">+52 775 106 9739<br>Disponible 24/7</p>
-                    </div>
-                </div>
+    <a href="https://wa.me/527751069739?text=Hola%20Brandon%2C%20vi%20tu%20portafolio%20y%20quiero%20contactarte" 
+       target="_blank" rel="noopener" 
+       class="contact-info-card d-block" 
+       style="text-decoration:none; color:inherit;">
+        <i class="fab fa-whatsapp fa-2x mb-3" style="color: #25D366;"></i>
+        <h5>Teléfono</h5>
+        <p class="text-muted">+52 775 106 9739<br>Respuesta rápida garantizada</p>
+    </a>
+</div>
                 <div class="col-md-4 mb-4">
                     <div class="contact-info-card">
                         <i class="fas fa-envelope fa-2x mb-3" style="color: #4facfe;"></i>
                         <h5>Email</h5>
-                        <p class="text-muted">brandon.mora1165@gmail.com<br>Respuesta rápida garantizada</p>
+                        <p class="text-muted">brandon.mora1165@gmail.com<br>Respuesta rápida</p>
                     </div>
                 </div>
             </div>
@@ -425,5 +428,39 @@
             }
         });
     </script>
+
+    <script>
+    // Scroll suave y personalizado para los enlaces internos (#inicio, #sobre-mi, etc.)
+    document.querySelectorAll('a[href^="#"]').forEach(link => {
+        link.addEventListener('click', function (e) {
+            const targetId = this.getAttribute('href');
+            const target = document.querySelector(targetId);
+            if (!target) return;
+
+            e.preventDefault();
+
+            const navHeight = document.querySelector('.navbar-custom').offsetHeight;
+            const targetPosition = target.getBoundingClientRect().top + window.pageYOffset - navHeight;
+            const startPosition = window.pageYOffset;
+            const distance = targetPosition - startPosition;
+            const duration = 900; // milisegundos, ajusta a gusto
+            let startTime = null;
+
+            function easeInOutCubic(t) {
+                return t < 0.5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2;
+            }
+
+            function animation(currentTime) {
+                if (startTime === null) startTime = currentTime;
+                const elapsed = currentTime - startTime;
+                const progress = Math.min(elapsed / duration, 1);
+                window.scrollTo(0, startPosition + distance * easeInOutCubic(progress));
+                if (elapsed < duration) requestAnimationFrame(animation);
+            }
+
+            requestAnimationFrame(animation);
+        });
+    });
+</script>
 </body>
 </html>
